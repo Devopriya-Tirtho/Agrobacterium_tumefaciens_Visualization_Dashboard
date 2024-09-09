@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a comprehensive visualization dashboard designed to interactively display data related to BacillusS. The dashboard supports multiple types of visualizations, including 3D and 2D graph visualizations, heatmaps, and parallel plots. Users can interact with the data through various controls such as sliders, checkboxes, and range selectors.
+This project is a comprehensive visualization dashboard designed to interactively display data related to Agrobacterium tumefaciens. The dashboard supports multiple types of visualizations, including 3D and 2D graph visualizations, heatmaps, and parallel plots. Users can interact with the data through various controls such as sliders, checkboxes, and range selectors.
 
 ## Features
 
