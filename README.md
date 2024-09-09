@@ -18,7 +18,7 @@ This project is a comprehensive visualization dashboard designed to interactivel
 
 1. **Clone the repository**:
     ```sh
-    git clone [https://github.com/Devopriya-Tirtho/DashboardDevelopment_ResearchWork.git](https://github.com/Devopriya-Tirtho/Visualization-Dashboard-for-Brassica-napus.git)
+    git clone https://github.com/Devopriya-Tirtho/Agrobacterium_tumefaciens_Visualization_Dashboard.git
     cd visualization-dashboard
     ```
 
