@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar for Controls -->
+    <div class="sidebar">
+        <header>
+            <!-- Dataset Selector -->
+            <div class="option-block">
+                <label for="dataset-selector">Dataset Selection</label>
+                <select id="dataset-selector">
+                    <option value="">Dataset</option>
+                    <option value="A_tumefaciens_Wild_type">A. tumefaciens Wild-type</option>
+                    <option value="A_tumefaciens_Delta_podJ">A. tumefaciens Delta-podJ</option>
+                    <option value="A_tumefaciens_Delta_podZ">A. tumefaciens Delta-podZ</option>
+                    <option value="A_tumefaciens_Delta_podZ_Delta_podJ">A. tumefaciens Delta-podZ Delta-podJ</option>
+                    <option value="A_tumefaciens_Delta_gpr">A. tumefaciens Delta-gpr</option>
+                    <!-- More datasets can be added here -->
+                </select>
+            </div>
+    
+            <!-- Node Selection -->
+            <div class="option-block">
+                <label for="node-select-btn">Node Selection</label>
+                <div id="node-selection" class="dropdown">
+                    <button id="node-select-btn" class="dropbtn">Node List</button>
+                    <div id="node-dropdown" class="dropdown-content">
+                        <div id="node-checkbox-area" style="overflow-y: auto; max-height: 200px;"> <!-- Scrollable Area -->
+                            <div>
+                                <input type="checkbox" id="select-all-nodes" />
+                                <label for="select-all-nodes">Select All</label>
+                            </div>
+                            <div id="node-checkboxes">
+                                <!-- Node checkboxes will be dynamically inserted here -->
+                            </div>
+                        </div>
+                        <!-- Fixed Buttons -->
+                        <div class="button-container">
+                            <button id="clear-nodes-button">Clear</button>
+                            <button id="visualize-nodes">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Interaction Type Selection -->
+                <div class="option-block">
+                    <label for="interaction-type">Interaction Type</label>
+                    <div class="interaction-option">
+                        <input type="checkbox" id="intra-interaction" name="interaction" value="1">
+                        <label for="intra-interaction">Intra-interaction</label>
+                    </div>
+                    <div class="interaction-option">
+                        <input type="checkbox" id="inter-interaction" name="interaction" value="2">
+                        <label for="inter-interaction">Inter-interaction</label>
+                    </div>
+                    <button id="apply-interaction">Apply</button>
+                </div>
+            <!-- Range Selection -->
+            <div class="option-block">
+                <label for="range-selection">Range Selection</label>
+                <input type="number" id="fromBin" name="fromBin" min="0" placeholder="From Bin">
+                <input type="number" id="toBin" name="toBin" min="0" placeholder="To Bin">
+                <button id="visualize-range">Apply</button>
+            </div>
+    
+            <!-- Edge Weight Range Slider -->
+            <div class="option-block">
+                <label for="edgeWeightSlider">Top x% Edges</label>
+                <input type="range" id="edgeWeightSlider" name="edgeWeightSlider" min="0" max="100" value="100">
+                <span id="edgeWeightValue">100%</span>
+            </div>
+    
+            <!-- Link Opacity Slider -->
+            <div class="option-block">
+                <label for="linkOpacitySlider">Opacity (%)</label>
+                <input type="range" id="linkOpacitySlider" name="linkOpacitySlider" min="0" max="100" value="100">
+                <span id="linkOpacityValue">100%</span>
+            </div>
+    
+    
+            <!-- Clear Visualizations Button -->
+            <div class="option-block">
+                <button id="clear-visualizations">Clear Visualizations</button>
+            </div>
+        </header>
+    </div>
+    
+
+    <!-- Main Visualization Area -->
+    <main>
+        <div id="vis-container">
+            <div id="visualization1" class="visualization">
+                <div style="text-align: center; padding-top: 10px;">3D Graph Visualization</div>
+                <div id="placeholder1">
+                    <img src="1_1.JPG" alt="Loading..." />
+                </div>
+            </div>
+            <div id="visualization2" class="visualization">
+                <div style="text-align: center; padding-top: 10px;">2D Graph Visualization</div>
+                <div id="placeholder2">
+                    <img src="1_2.JPG" alt="Loading..." />
+                </div>
+            </div>
+            <div id="visualization3" class="visualization">
+                <div style="text-align: center; padding-top: 10px;">Heatmap Visualization</div>
+                <div id="placeholder3">
+                    <img src="1_3.JPG" alt="Loading..." />
+                </div>
+            </div>
+            <div id="visualization4" class="visualization">
+                <div class="visualization-header">
+                    <button id="colorLinks">Color Links</button>
+                    <div class="visualization-title">Parallel-Plot Visualization</div>
+                    <button id="grayLinks">Gray Links</button>
+                </div>
+                <div id="legend-container">
+                    <div class="legend" id="legend"></div>
+                </div>
+                <div id="placeholder4">
+                    <img src="2_4.JPG" alt="Loading..." />
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div id="tooltip" style="position: absolute; display: none; padding: 10px; background: rgba(0, 0, 0, 0.75); color: white; border-radius: 5px; pointer-events: none;"></div>
+        <div id="tooltipHeatmap" style="position: absolute; display: none; padding: 10px; background: rgba(0, 0, 0, 0.75); color: white; border-radius: 5px; pointer-events: none;"></div>
+        <div id="tooltip2D" style="position: absolute; display: none; padding: 10px; background: rgba(0, 0, 0, 0.75); color: white; border-radius: 5px; pointer-events: none;"></div>
+        <div id="tooltip3D" style="position: absolute; display: none; padding: 10px; background: rgba(255, 255, 255, 0.8); border-radius: 5px; pointer-events: none; z-index: 100;">
+            Node Info
+        </div>
+        <div id="tooltipParallelPlot" style="position: absolute; display: none; background: lightgray; padding: 5px; border: 1px solid #ccc;"></div>
+        <div id="selectionTooltip" style="display: none; position: absolute; background: white; border: 1px solid black; padding: 10px;">
+            <button id="downloadButton">Download Selection</button>
+        </div>
+
+
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading visualizations, please wait...</p>
+        </div>
+        
+        
+
+    </main>
+    <!-- Your script file -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>

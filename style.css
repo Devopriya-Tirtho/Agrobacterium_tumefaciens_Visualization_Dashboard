@@ -1,0 +1,388 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;  /* Adjust the width as needed */
+    height: 100vh;
+    background: linear-gradient(145deg, #434343, #333333);  /* Gradient for a more modern look */
+    padding: 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), -3px -3px 10px rgba(60, 60, 60, 0.2);  /* 3D effect */
+    overflow-y: auto;  /* Allows scrolling for smaller screens */
+    color: #fff;  /* Text color for better readability */
+    border-radius: 15px;  /* Rounded corners for a modern look */
+}
+
+body, html {
+    margin: 0;
+    padding-left: 240px; /* Adjusted for the new sidebar width and padding */
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;  /* Light background for contrast */
+    height: 100%;
+}
+
+header {
+    background-color: transparent;  /* Remove background color */
+    color: #fff;
+    text-align: center;
+}
+
+
+/* CSS for Left Pan Option, sliders and dropdowns */
+.option-block {
+    margin-bottom: 20px;
+    background: #444;  /* Darker background for options */
+    padding: 10px;
+    border-radius: 10px;  /* Rounded corners */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 0.1);  /* Inner shadow for depth */
+    box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+}
+
+.option-block label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;  /* White color for labels */
+}
+
+.option-block input[type="range"],
+.option-block input[type="number"],
+.option-block select,
+.option-block button {
+    width: calc(100% - 20px); /* Adjust width to fit within the option block */
+    padding: 10px;  /* Uniform padding for better spacing */
+    border-radius: 5px;  /* Rounded corners */
+    border: 1px solid #555;  /* Border color */
+    background: #333;  /* Background color */
+    color: #fff;  /* Text color */
+    box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+    margin-bottom: 10px; /* Space between elements */
+}
+
+.option-block input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #555; /* Slider track color */
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.option-block input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff; /* Thumb color */
+    cursor: pointer;
+}
+
+.option-block input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff; /* Thumb color */
+    cursor: pointer;
+}
+
+.option-block input[type="range"]::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff; /* Thumb color */
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container button {
+    width: 48%;  /* Make buttons half-width */
+    padding: 10px;
+    background-color: #555;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;  /* Rounded corners */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(60, 60, 60, 0.2);  /* 3D effect */
+    box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+}
+
+.button-container button:hover,
+.option-block button:hover {
+    background-color: #777;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+}
+
+.dropbtn {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: calc(100% - 20px);
+    text-align: left;
+    border-radius: 5px;  /* Rounded corners */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(60, 60, 60, 0.2);  /* 3D effect */
+    position: relative;
+    padding-right: 30px;  /* Space for the arrow */
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Space between elements */
+}
+
+.dropbtn::after {
+    content: '\25BC';  /* Downward arrow */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;  /* Ignore clicks on the arrow */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;  /* Aligns directly under the dropdown button */
+    left: 0;  /* Aligns with the left edge of the dropdown button */
+    background-color: #f9f9f9;
+    width: 100%;  /* Ensures the dropdown matches the width of its parent */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 0 0 5px 5px;  /* Rounded bottom corners */
+    box-sizing: border-box;
+}
+
+.dropdown-content div {
+    padding: 5px;
+}
+
+.dropbtn:hover .dropdown-content,
+.dropbtn:focus .dropdown-content {
+    display: block; /* Ensures dropdown shows on hover or focus */
+}
+
+#node-checkbox-area label {
+    display: inline-block;  /* Ensures labels are in line */
+    vertical-align: middle;  /* Aligns text vertically with checkboxes */
+    margin-left: 8px;  /* Provides space between checkbox and label */
+    color: black; /* Changes text color to black */
+}
+
+#node-dropdown input[type="checkbox"] {
+    accent-color: #333; /* This changes the checkbox color */
+    vertical-align: middle;  /* Aligns checkboxes vertically in the middle */
+}
+
+#node-checkbox-area {
+    max-height: 150px;  /* Adjust according to the height of the sidebar */
+    overflow-y: auto;  /* Allows scrolling */
+    padding: 5px 0;  /* Padding for better spacing */
+    background: #444;  /* Background color */
+    border-radius: 0 0 5px 5px;  /* Rounded bottom corners */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 0.1);  /* Inner shadow for depth */
+    box-sizing: border-box;
+}
+
+#selectionTooltip {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    z-index: 1000;  /* Ensure it appears above other elements */
+}
+
+
+.interaction-option {
+    display: flex;
+    align-items: center;  /* Align items in the center vertically */
+}
+
+.interaction-option label {
+    margin-left: 8px;  /* Space between checkbox and label */
+    color: #fff;  /* White color for labels */
+}
+
+.option-block input[type="checkbox"] {
+    accent-color: #333; /* This changes the checkbox color */
+}
+/* CSS for Canvas Boxes (Main Dashboard's Visualization Part) */
+#vis-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Create two columns */
+    grid-gap: 10px;  /* Reduced space between grid items */
+    align-items: start;  /* Align items at the start of their respective cells */
+    width: 100%;  /* Full width of the container */
+    margin: 0 auto;  /* Center the grid horizontally */
+    padding: 10px;  /* Reduced padding around the grid container */
+    border: 3px solid #010101;  /* Border for definition */
+}
+
+/* Update styles for visualization containers */
+.visualization-placeholder {
+    display: flex;
+    background: #fff;  /* White background */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);  /* Shadow for depth */
+    border: 3px solid #010101;  /* Border for definition */
+    height: 400px;  /* Reduced height for consistency */
+    position: relative;  /* Relative positioning for internal positioning */
+}
+
+#visualization3 {
+    height: 425px;   /* Adjusted height */
+    border: 3px solid #010101;  /* Border for definition */
+    position: relative;
+    overflow: hidden;
+}
+#visualization1, #visualization2, #visualization4 {
+    height: 425px; /* Ensure height matches other visualizations */
+    flex-grow: 1;  /* Allows the visualization to fill available space */
+    min-width: 500px; /* Set a minimum width to prevent it from becoming too small */
+    border: 3px solid #010101;  /* Border for definition */
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* Additional rules to prevent overflow and manage content sizing */
+.visualization-placeholder {
+    overflow: hidden;  /* Hide any overflow */
+    display: flex;  /* Use flexbox to center content */
+    justify-content: center;  /* Center content horizontally */
+    align-items: center;  /* Center content vertically */
+}
+
+/* Responsive styles for large monitors */
+@media (min-width: 1200px) {
+    #vis-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .visualization {
+        height: 500px;
+    }
+}
+
+/* Responsive styles for medium monitors */
+@media (max-width: 1199px) and (min-width: 800px) {
+    #vis-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .visualization {
+        height: 400px;
+    }
+}
+
+/* Responsive styles for small monitors */
+@media (max-width: 799px) {
+    #vis-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .visualization {
+        height: 300px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    body {
+        padding-left: 0;
+    }
+
+    #vis-container {
+        margin-left: 0;
+    }
+}
+
+canvas {
+    pointer-events: auto; /* Ensure pointer events are enabled */
+}
+
+#tooltipParallelPlot {
+    position: absolute;
+    display: none;
+    background: lightgray;
+    padding: 5px;
+    border: 1px solid #ccc;
+    pointer-events: none; /* Ensures the tooltip doesn't interfere with mouse events */
+    z-index: 10; /* Makes sure the tooltip is on top of other elements */
+}
+
+
+
+.visualization {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.visualization-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.visualization-title {
+    text-align: center;
+    flex-grow: 1;
+}
+
+
+
+
+
+
+/* CSS for Loading The Dialog Box */
+
+#loadingSpinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000; /* Ensure it is above other content */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Initially loading still images at the visualization placeholders */
+#placeholder1, #placeholder2, #placeholder3, #placeholder4 {
+    display: none;
+}
